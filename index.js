@@ -1,19 +1,12 @@
-const todoSequelize = require("./src/database/setup/database");
-const app = require("./src/server");
-// Zugriff auf Umgebungsvariablen
-// const { PORT } = process.env;
-const PORT = process.env.PORT;
+import express from "express";
 
-todoSequelize
-  .sync()
-  .then(() => {
-    console.log("DB has been successfully initialized");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+const PORT = 5050;
+const app = express();
 
-// App hört im folgenden auf den Port, welcher über die Umgebungsvariable definiert ist
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`App is listening on Port ${PORT}`);
 });
